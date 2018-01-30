@@ -9,7 +9,7 @@ webuirepo="https://github.com/bxav/iot-webui.git"
 simulationrepo="https://github.com/bxav/device-simulation-dotnet.git"
 clirepobranch="dev"
 
-[ -z $AZURE_SUBSCRIPTION_ID ] && echo "AZURE_SUBSCRIPTION_ID is not set" && exit 1
+#[ -z $AZURE_SUBSCRIPTION_ID ] && echo "AZURE_SUBSCRIPTION_ID is not set" && exit 1
 
 [ -n "$PROJECT_NAME" ] || PROJECT_NAME=$1
 [ -n "$PROJECT_NAME" ] || read -p "Enter your project name: " PROJECT_NAME
@@ -74,10 +74,11 @@ git clone -b $webuibranch $webuirepo webui-custom
 git clone -b $simulatorbranch $webuirepo simulator-custom 
 
 # Create .env file
-printf "\n# Env files\n.env" >> .gitignore
+printf "\n# Env files\n.env\n.tmp" >> .gitignore
 
 cat <<EOF > .env
 AZURE_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+PROJECT_NAME=$PROJECT_NAME
 PROJECT_LANGUAGE=$PROJECT_LANGUAGE
 PROJECT_USERNAME=$PROJECT_USERNAME
 PROJECT_PASSWORD=`echo $PROJECT_PASSWORD | base64`
