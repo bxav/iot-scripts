@@ -7,6 +7,7 @@ solutioncommit="ce4d34ad722b16321a31675314403f2f1e196c45"
 clirepo="https://github.com/bxav/iot-cli.git"
 webuirepo="https://github.com/bxav/iot-webui.git"
 simulationrepo="https://github.com/bxav/device-simulation-dotnet.git"
+scriptsrepo="https://github.com/bxav/iot-scripts.git"
 clirepobranch="dev"
 
 #[ -z $AZURE_SUBSCRIPTION_ID ] && echo "AZURE_SUBSCRIPTION_ID is not set" && exit 1
@@ -72,6 +73,7 @@ node ./publish/index.js \
 cd ..
 git clone -b $webuibranch $webuirepo webui-custom 
 git clone -b $simulatorbranch $webuirepo simulator-custom 
+git clone $scriptsrepo scripts-custom
 
 # Create .env file
 printf "\n# Env files\n.env\n.tmp" >> .gitignore
